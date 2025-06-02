@@ -57,30 +57,76 @@
 
       <!-- Hero Section -->
       <section>
-        <div class="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-40 py-10 md:py-16 bg-[#F5F7FA] gap-8">
-          <div class="flex-1 flex flex-col gap-6 max-w-xl">
-            <h1 class="text-3xl md:text-5xl font-bold text-[#263238] leading-tight">
-              Lessons and insights <span class="text-[#4CAF4F]">from 8 years</span>
-            </h1>
-            <i class="fa-solid fa-arrow-right text-xl md:text-2xl" style="color: #000000;"></i>
-            <p class="text-base md:text-lg text-[#717171]">
-              Where to grow your business as a photographer: site or social media?
-            </p>
-            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
-  hover:bg-[#388E3C] 
-  active:bg-[#2E7D32]
-  focus:outline-none 
-  focus:ring-2 
-  focus:ring-[#388E3C]
-  focus:ring-opacity-50
-  transition-colors 
-  duration-200 ">
-              Register
-            </button>  </div>
-          <div class="flex-1 flex justify-center md:justify-end">
-            <img src="./assets/image1.png" alt="Landing" class="max-w-xs md:max-w-md w-full h-auto" />
+         <div class="relative w-full overflow-hidden" @mouseenter="stopAutoPlay" @mouseleave="startAutoPlay">
+          
+    <!-- Slides Container -->
+    <div class="relative w-full">
+      <div
+        v-for="(slide, index) in slides"
+        :key="index"
+        v-show="currentSlide === index"
+        :class="['slide-transition', slide.bgColor]"
+      >
+        <section>
+          <div class="flex flex-col md:flex-row items-center justify-between w-full px-4 md:px-40 py-10 md:py-16 gap-8 fade-in">
+            <div class="flex-1 flex flex-col gap-6 max-w-xl">
+              <h1 class="text-3xl md:text-5xl font-bold text-[#263238] leading-tight">
+                {{ slide.title }} <span class="text-[#4CAF4F]">{{ slide.titleColor }}</span>
+              </h1>
+              <i class="fa-solid fa-arrow-right text-xl md:text-2xl" style="color: #000000;"></i>
+              <p class="text-base md:text-lg text-[#717171]">
+                {{ slide.description }}
+              </p>
+              <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer hover:bg-[#388E3C] active:bg-[#2E7D32] focus:outline-none focus:ring-2 focus:ring-[#388E3C] focus:ring-opacity-50 transition-colors duration-200">
+                Register
+              </button>
+            </div>
+            <div class="flex-1 flex justify-center md:justify-end">
+              <img src="./assets/image1.png" alt="Landing" class="max-w-xs md:max-w-md w-full h-auto" />
+            </div>
           </div>
-        </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button
+      @click="prevSlide"
+      class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-700 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
+    >
+      <i class="fas fa-chevron-left"></i>
+    </button>
+
+    <button
+      @click="nextSlide"
+      class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-700 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-10"
+    >
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Navigation Dots -->
+    <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
+      <button
+        v-for="(slide, index) in slides"
+        :key="'dot-' + index"
+        @click="goToSlide(index)"
+        :class="[
+          'w-3 h-3 rounded-full transition-all duration-300',
+          currentSlide === index 
+            ? 'bg-[#4CAF4F] scale-125 shadow-lg' 
+            : 'bg-white bg-opacity-60 hover:bg-opacity-80'
+        ]"
+      ></button>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="absolute bottom-0 left-0 w-full h-1 bg-black bg-opacity-10">
+      <div 
+        class="h-full bg-[#4CAF4F] transition-all duration-500 ease-out"
+        :style="{ width: ((currentSlide + 1) / slides.length) * 100 + '%' }"
+      ></div>
+    </div>
+  </div>
       </section>
 
       <!-- Our Clients -->
@@ -147,15 +193,7 @@
             <p class="text-base md:text-lg text-[#717171] mb-4 md:mb-6">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna. Praesent ultrices nulla at erat pellentesque, nec convallis erat elementum.
             </p>
-            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
-  hover:bg-[#388E3C] 
-  active:bg-[#2E7D32]
-  focus:outline-none 
-  focus:ring-2 
-  focus:ring-[#388E3C]
-  focus:ring-opacity-50
-  transition-colors 
-  duration-200">
+            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer  hover:bg-[#388E3C]  active:bg-[#2E7D32] focus:outline-none  focus:ring-2  focus:ring-[#388E3C] focus:ring-opacity-50 transition-colors  duration-200">
               Learn More
             </button>
           </div>
@@ -215,15 +253,7 @@
             <p class="text-base md:text-lg text-[#717171] mb-4 md:mb-6">
               Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor, augue nec tincidunt molestie, massa nunc varius arcu, at scelerisque elit erat a magna. Donec quis erat at libero ultrices mollis. In hac habitasse platea dictumst. Vivamus vehicula leo dui, at porta nisi facilisis finibus. In euismod augue vitae nisi ultricies, non aliquet urna tincidunt. Integer in nisi eget nulla commodo faucibus efficitur quis massa. Praesent felis est, finibus et nisi ac, hendrerit venenatis libero. Donec consectetur faucibus ipsum id gravida.
             </p>
-            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
-  hover:bg-[#388E3C] 
-  active:bg-[#2E7D32]
-  focus:outline-none 
-  focus:ring-2 
-  focus:ring-[#388E3C]
-  focus:ring-opacity-50
-  transition-colors 
-  duration-200">
+            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold  cursor-pointer hover:bg-[#388E3C] active:bg-[#2E7D32]focus:outline-none focus:ring-2 focus:ring-[#388E3C]focus:ring-opacity-50transition-colors duration-200">
               Learn More
             </button>
           </div>
@@ -283,7 +313,7 @@
           </div>
           <div class="relative h-full">
             <img src="./assets/image27.png" class="w-full md:w-80 rounded-lg" alt="">
-            <div class="w-full md:w-70 bg-[#F5F7FA] p-4 rounded-lg absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow">
+            <div class="w-full md:w-70 bg-[#F5F7FA] p-5 rounded-lg absolute top-5 transform -translate-y-1/2 shadow">
               <h3 class="text-base md:text-[19px] text-center text-[#717171] font-semibold">Revamping the Membership Model with Triathlon Australia</h3>
               <h4 class="font-semibold text-[#4CAF4F] flex py-2 md:py-4 justify-center">Readmore</h4>
             </div>
@@ -295,15 +325,7 @@
       <section>
         <div class="bg-[#F5F7FA] w-full flex flex-col items-center py-8 md:py-16 px-4">
           <h2 class="text-2xl md:text-[60px] font-semibold w-full md:w-150 text-center mx-auto pt-4 md:pt-8">Pellentesque suscipit fringilla libero eu.</h2>
-          <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
-  hover:bg-[#388E3C] 
-  active:bg-[#2E7D32]
-  focus:outline-none 
-  focus:ring-2 
-  focus:ring-[#388E3C]
-  focus:ring-opacity-50
-  transition-colors 
-  duration-200">Get a Demo</button>
+          <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer  hover:bg-[#388E3C]  active:bg-[#2E7D32] focus:outline-none  focus:ring-2  focus:ring-[#388E3C] focus:ring-opacity-50 transition-colors  duration-200">Get a Demo</button>
         </div>
       </section>
 
@@ -355,15 +377,7 @@
               />
               <button
                 type="submit"
-                class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
-  hover:bg-[#388E3C] 
-  active:bg-[#2E7D32]
-  focus:outline-none 
-  focus:ring-2 
-  focus:ring-[#388E3C]
-  focus:ring-opacity-50
-  transition-colors 
-  duration-200"
+                class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer  hover:bg-[#388E3C]  active:bg-[#2E7D32] focus:outline-none  focus:ring-2  focus:ring-[#388E3C] focus:ring-opacity-50 transition-colors  duration-200"
               >
                 Subscribe
               </button>
@@ -375,12 +389,117 @@
 
 
 </template>
-    <script setup>
-    import { ref } from 'vue'
-    const showMenu = ref(false)
-    </script>
-<style scoped>
 
+    
+    <script>
+
+
+import { ref, onMounted, onUnmounted } from 'vue'
+    const showMenu = ref(false)
+
+export default {
+  name: 'LandingSlider',
+  setup() {
+    const currentSlide = ref(0)
+    let autoPlayInterval = null
+
+    const slides = ref([
+      {
+        title: "Lessons and insights",
+        titleColor: "from 8 years",
+        description: "Where to grow your business as a photographer: site or social media?",
+        image: "./assets/image1.png",
+        bgColor: "bg-[#F5F7FA]"
+      },
+      {
+        title: "Professional Growth",
+        titleColor: "in Digital World",
+        description: "Discover the best strategies to build your online presence and reach more clients.",
+        image: "./assets/image1.png", 
+        bgColor: "bg-[#F0F8FF]"
+      },
+      {
+        title: "Creative Solutions",
+        titleColor: "for Modern Business",
+        description: "Learn how to combine creativity with business strategy for maximum impact.",
+        image: "./assets/image1.png",
+        bgColor: "bg-[#F5F0FF]"
+      },
+      {
+        title: "Success Stories",
+        titleColor: "and Case Studies", 
+        description: "Real examples from successful photographers who built thriving businesses.",
+        image: "./assets/image1.png",
+        bgColor: "bg-[#FFF5F0]"
+      }
+    ])
+
+    const nextSlide = () => {
+      currentSlide.value = (currentSlide.value + 1) % slides.value.length
+    }
+
+    const prevSlide = () => {
+      currentSlide.value = currentSlide.value === 0 ? slides.value.length - 1 : currentSlide.value - 1
+    }
+
+    const goToSlide = (index) => {
+      currentSlide.value = index
+    }
+
+    const startAutoPlay = () => {
+      autoPlayInterval = setInterval(() => {
+        nextSlide()
+      }, 5000)
+    }
+
+    const stopAutoPlay = () => {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval)
+        autoPlayInterval = null
+      }
+    }
+
+    onMounted(() => {
+      startAutoPlay()
+    })
+
+    onUnmounted(() => {
+      stopAutoPlay()
+    })
+
+    return {
+      currentSlide,
+      slides,
+      nextSlide,
+      prevSlide,
+      goToSlide,
+      startAutoPlay,
+      stopAutoPlay
+    }
+  }
+}
+</script>
+
+<style scoped>
+.slide-transition {
+  transition: all 0.7s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.7s ease-out;
+}
 </style>
+
 
 
