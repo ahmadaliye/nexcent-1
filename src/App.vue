@@ -8,7 +8,7 @@
       v-if="showMenu" 
       class="fixed inset-0 z-50 bg-white flex flex-col items-center justify-center transition-all duration-300"
     >
-      <button class="absolute top-6 right-8 text-4xl text-[#4CAF4F] hover:text-[#388E3C] transition-colors duration-200" @click="showMenu = false">
+      <button class="absolute top-6 right-8 text-4xl text-[#4CAF4F] cursor-pointer hover:text-[#388E3C] transition-colors duration-200" @click="showMenu = false">
         &times;
       </button>
       <nav class="flex flex-col gap-8 items-center">
@@ -66,7 +66,15 @@
             <p class="text-base md:text-lg text-[#717171]">
               Where to grow your business as a photographer: site or social media?
             </p>
-            <button class="w-full md:w-44 h-12 cursor-pointer bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 hover:bg-[#388E3C] transition-colors duration-200">
+            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
+  hover:bg-[#388E3C] 
+  active:bg-[#2E7D32]
+  focus:outline-none 
+  focus:ring-2 
+  focus:ring-[#388E3C]
+  focus:ring-opacity-50
+  transition-colors 
+  duration-200 ">
               Register
             </button>  </div>
           <div class="flex-1 flex justify-center md:justify-end">
@@ -139,7 +147,15 @@
             <p class="text-base md:text-lg text-[#717171] mb-4 md:mb-6">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet facilisis urna. Praesent ultrices nulla at erat pellentesque, nec convallis erat elementum.
             </p>
-            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold cursor-pointer hover:bg-[#388E3C] transition-colors duration-200">
+            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
+  hover:bg-[#388E3C] 
+  active:bg-[#2E7D32]
+  focus:outline-none 
+  focus:ring-2 
+  focus:ring-[#388E3C]
+  focus:ring-opacity-50
+  transition-colors 
+  duration-200">
               Learn More
             </button>
           </div>
@@ -199,7 +215,15 @@
             <p class="text-base md:text-lg text-[#717171] mb-4 md:mb-6">
               Donec a eros justo. Fusce egestas tristique ultrices. Nam tempor, augue nec tincidunt molestie, massa nunc varius arcu, at scelerisque elit erat a magna. Donec quis erat at libero ultrices mollis. In hac habitasse platea dictumst. Vivamus vehicula leo dui, at porta nisi facilisis finibus. In euismod augue vitae nisi ultricies, non aliquet urna tincidunt. Integer in nisi eget nulla commodo faucibus efficitur quis massa. Praesent felis est, finibus et nisi ac, hendrerit venenatis libero. Donec consectetur faucibus ipsum id gravida.
             </p>
-            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold cursor-pointer hover:bg-[#388E3C] transition-colors duration-200">
+            <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
+  hover:bg-[#388E3C] 
+  active:bg-[#2E7D32]
+  focus:outline-none 
+  focus:ring-2 
+  focus:ring-[#388E3C]
+  focus:ring-opacity-50
+  transition-colors 
+  duration-200">
               Learn More
             </button>
           </div>
@@ -271,7 +295,15 @@
       <section>
         <div class="bg-[#F5F7FA] w-full flex flex-col items-center py-8 md:py-16 px-4">
           <h2 class="text-2xl md:text-[60px] font-semibold w-full md:w-150 text-center mx-auto pt-4 md:pt-8">Pellentesque suscipit fringilla libero eu.</h2>
-          <button class="w-full md:w-35 h-10 bg-[#4CAF4F] text-white rounded-[5px] mt-6 md:mt-8 mb-6 md:mb-10 cursor-pointer hover:bg-[#388E3C] transition-colors duration-200">Get a Demo</button>
+          <button class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
+  hover:bg-[#388E3C] 
+  active:bg-[#2E7D32]
+  focus:outline-none 
+  focus:ring-2 
+  focus:ring-[#388E3C]
+  focus:ring-opacity-50
+  transition-colors 
+  duration-200">Get a Demo</button>
         </div>
       </section>
 
@@ -323,7 +355,15 @@
               />
               <button
                 type="submit"
-                class="bg-[#4CAF4F] text-white rounded px-4 py-2 text-xs md:text-sm mt-2 cursor-pointer hover:bg-[#388E3C] transition-colors duration-200"
+                class="w-full md:w-44 h-12 bg-[#4CAF4F] rounded-[5px] text-white text-lg font-semibold mt-2 cursor-pointer 
+  hover:bg-[#388E3C] 
+  active:bg-[#2E7D32]
+  focus:outline-none 
+  focus:ring-2 
+  focus:ring-[#388E3C]
+  focus:ring-opacity-50
+  transition-colors 
+  duration-200"
               >
                 Subscribe
               </button>
